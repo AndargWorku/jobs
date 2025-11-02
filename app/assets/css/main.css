@@ -1,0 +1,28 @@
+/* ~/assets/css/main.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* html {
+  
+  background-color: #ffffff; 
+  color: #1a202c;
+}
+
+html.dark-mode {
+ 
+  background-color: #1a202c; 
+  color: #e2e8f0; 
+}
+
+
+:root {
+  --color-text-base: #1a202c;
+  --color-bg-base: #ffffff;
+}
+
+.dark-mode:root {
+  --color-text-base: #e2e8f0;
+  --color-bg-base: #1a202c;
+}  */

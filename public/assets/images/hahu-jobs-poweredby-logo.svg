@@ -1,0 +1,11 @@
+<!-- ./public/assets/images/hahu-jobs-poweredby-logo.svg -->
+<svg width="250" height="70" viewBox="0 0 250 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <title>Hahu Jobs Logo</title>
+    <style>
+      .logo-dark-text { fill: #2a3342; }
+      .logo-primary { fill: #04a29f; }
+    </style>
+    
+    <text x="0" y="50" class="logo-dark-text" font-family="'Poppins', sans-serif" font-size="50" font-weight="800">HaHu</text>
+    <text x="145" y="50" class="logo-primary" font-family="'Poppins', sans-serif" font-size="50" font-weight="600">Jobs</text>
+</svg>
