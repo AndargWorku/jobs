@@ -8,12 +8,12 @@
 
     <div class="mt-6 mx-auto overflow-hidden relative">
       <NuxtMarquee :duration="100" :paused="isHovering">
-        <div class="flex gap-6 px-4 md:px-0">
+        <div class="flex gap-4 px-4 md:px-0">
           <div
             v-for="(card, index) in cards"
             :key="index"
             class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex flex-col justify-between transition-all duration-300 relative group w-80 flex-shrink-0"
-            :class="{ 'ring-2 ring-green-500 shadow-lg': card.hovered }"
+            :class="{ 'ring-1 ring-[#009379] shadow-lg': card.hovered }"
             @mouseenter="
               isHovering = true;
               card.hovered = true;
@@ -23,25 +23,44 @@
               card.hovered = false;
             "
           >
+            <!-- Conditional Date Tag (Only for Job Cards) -->
             <div
-              class="absolute top-0 left-0 bg-white px-3 py-1 rounded-br-lg text-gray-600 flex items-center gap-1 text-xs font-medium"
+              v-if="card.type === 'job'"
+              class="absolute left-0 bg-white px-3 py-1 rounded-br-lg text-gray-600 flex items-center gap-1 text-xs font-medium"
             >
               <Icon name="ph:calendar-blank" size="14" />
-              {{ card.type === "job" ? card.daysLeft : card.monthsLeft }}
+              {{ card.daysLeft }}
             </div>
 
-            <!-- Featured Ribbon for all cards -->
-            <div class="absolute top-0 right-0 w-32 rounded h-8">
+            <!-- Bookmark and Featured Ribbon Container -->
+            <div
+              class="absolute top-0 right-0 flex items-center justify-end h-6 z-10"
+            >
+              <!-- Bookmark Icon (Only for Job Cards) -->
               <button
-                class="relative w-full h-full bg-[#009379] text-white text-xs font-semibold flex items-center justify-center pr-2 transform -skew-x-12 translate-x-4 rounded-bl-lg rounded-tr-lg"
+                v-if="card.type === 'job'"
+                class="relative p-2 text-[#009379] transition-colors z-20"
+                @click="toggleBookmark(card)"
               >
-                <img
-                  src="/assets/images/hahu_featured.svg"
-                  alt="featured icon"
-                  class="h-8 skew-x-12"
+                <Icon
+                  :name="card.bookmarked ? 'ph:bookmark-fill' : 'ph:bookmark'"
+                  size="20"
                 />
-                <span class="ml-1 skew-x-12">Featured</span>
               </button>
+
+              <!-- Featured Ribbon -->
+              <div class="relative w-28 pr-4 justify-center items-center h-6">
+                <button
+                  class="relative w-full h-full bg-[#009379] text-white text-xs font-semibold flex items-center justify-center transform translate-x-4 rounded-bl-lg rounded-tr-lg"
+                >
+                  <img
+                    src="/assets/images/hahu_featured.svg"
+                    alt="featured icon"
+                    class="h-4 skew-x-12"
+                  />
+                  <span class="ml-1 font-light">Featured</span>
+                </button>
+              </div>
             </div>
 
             <template v-if="card.type === 'job'">
@@ -84,9 +103,23 @@
                         </div>
                       </div>
                       <button
-                        class="bg-[#009379] text-white text-xs font-semibold px-3 py-1 rounded-md w-full hover:bg-green-600 transition"
+                        class="text-[#009379] inline-flex items-center text-sm px-3"
                       >
                         Explore More
+                        <svg
+                          class="ml-1 w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          ></path>
+                        </svg>
                       </button>
                     </div>
                   </div>
@@ -144,8 +177,11 @@
                     <span
                       class="text-white bg-[#009379] text-xs font-semibold px-3 py-1 rounded-full inline-flex items-center gap-1"
                     >
-                      <Icon name="ph:clock-clockwise-light" size="14" /> Full
-                      Time
+                      <Icon
+                        name="material-symbols-light:person-shield-outline"
+                        size="14"
+                      />
+                      Full Time
                     </span>
                   </div>
                 </div>
@@ -171,16 +207,15 @@
               </div>
             </template>
 
-            <!-- Discover Card Specifics -->
             <template v-else>
-              <div class="text-center mt-8">
-                <p class="text-gray-800 text-lg font-bold mb-2">
+              <div class="justify-start mt-2">
+                <p class="text-xs font-light left-0 top-0 text-[#009379] mb-2">
                   Advertisement
                 </p>
-                <h4 class="text-gray-700 font-medium">Discover more</h4>
               </div>
 
-              <div class="mt-3 flex flex-wrap gap-2 justify-center">
+              <div class="mt-3 flex flex-wrap gap-2 justify-start">
+                <h4 class="text-gray-700 text-xs font-light">Discover more</h4>
                 <span
                   v-for="(link, j) in card.links"
                   :key="j"
@@ -227,7 +262,7 @@ const cards = ref([
     logo: "https://cdn.hahu.jobs/public/aggregator/telegram_channel_post/000aecc6fa8a77e0d4f2b115ffae1e8bdc4ba11876cc1c1a322bdd9d15e6c2ee97fd6d7e11e3f705cf77672c8b6a5d67cdf8.png",
     company: "Afro Steel PLC",
     daysLeft: "8 Days Left",
-    featured: true, // This will be true for all now due to global ribbon
+    featured: true,
     title: "Secretary and Receptionist",
     category: "Business",
     department: "Secretarial, Admin and Clerical",
@@ -237,15 +272,16 @@ const cards = ref([
     description:
       "Level 4 or Diploma in Secretarial Science or Office Management or in a related field of study Duties and Responsibilities: - Secretary and Receptionist...",
     views: "4.6k",
-    hovered: false, // Added for card border hover state
-    companyHovered: false, // Added for company hover state
+    hovered: false,
+    companyHovered: false,
+    bookmarked: false,
   },
   {
     type: "job",
     logo: "https://cdn.hahu.jobs/public/aggregator/telegram_channel_post/000aecc6fa8a77e0d4f2b115ffae1e8bdc4ba11876cc1c1a322bdd9d15e6c2ee97fd6d7e11e3f705cf77672c8b6a5d67cdf8.png",
     company: "Company B",
     daysLeft: "5 Days Left",
-    featured: true, // This will be true for all now due to global ribbon
+    featured: true,
     title: "Backend Developer",
     category: "Development",
     department: "Engineering",
@@ -257,10 +293,11 @@ const cards = ref([
     views: "85k",
     hovered: false,
     companyHovered: false,
+    bookmarked: false,
   },
   {
     type: "discover",
-    monthsLeft: "1 Month Left", // Changed for consistency
+
     links: [
       "Employment opportunities Ethiopia",
       "Addis Ababa",
@@ -271,13 +308,14 @@ const cards = ref([
     views: "25k",
     hovered: false,
     companyHovered: false,
+    bookmarked: false,
   },
   {
     type: "job",
     logo: "https://cdn.hahu.jobs/public/aggregator/telegram_channel_post/000aecc6fa8a77e0d4f2b115ffae1e8bdc4ba11876cc1c1a322bdd9d15e6c2ee97fd6d7e11e3f705cf77672c8b6a5d67cdf8.png",
     company: "Company C",
     daysLeft: "7 Days Left",
-    featured: true, // This will be true for all now due to global ribbon
+    featured: true,
     title: "UI/UX Designer",
     category: "Design",
     department: "Product",
@@ -289,13 +327,14 @@ const cards = ref([
     views: "95k",
     hovered: false,
     companyHovered: false,
+    bookmarked: false,
   },
   {
     type: "job",
     logo: "https://cdn.hahu.jobs/public/aggregator/telegram_channel_post/000aecc6fa8a77e0d4f2b115ffae1e8bdc4ba11876cc1c1a322bdd9d15e6c2ee97fd6d7e11e3f705cf77672c8b6a5d67cdf8.png",
     company: "Company D",
     daysLeft: "10 Days Left",
-    featured: true, // This will be true for all now due to global ribbon
+    featured: true,
     title: "Data Scientist",
     category: "Data",
     department: "Analytics",
@@ -307,18 +346,28 @@ const cards = ref([
     views: "110k",
     hovered: false,
     companyHovered: false,
+    bookmarked: false,
   },
   {
     type: "discover",
-    monthsLeft: "2 Months Left", // Changed for consistency
+
     links: ["Education", "Marketing", "Travel"],
     views: "60k",
     hovered: false,
     companyHovered: false,
+    bookmarked: false,
   },
 ]);
 
-const isHovering = ref(false); // Controls the NuxtMarquee pause state
+const isHovering = ref(false);
+
+const toggleBookmark = (card) => {
+  if (card.type === "job") {
+    card.bookmarked = !card.bookmarked;
+
+    console.log(`Card "${card.title}" bookmarked status: ${card.bookmarked}`);
+  }
+};
 </script>
 
 <style scoped>

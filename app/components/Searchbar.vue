@@ -1,12 +1,12 @@
 <template>
   <div class="text-center relative mt-10">
     <h1 class="font-bold text-3xl text-secondary text-center">
-      <span class="font-body block xl:inline text-[#293649] dark:text-white">
+      <span class="font-body block xl:inline text-[#293649]">
         All Ethiopian Jobs in One Place.
       </span>
     </h1>
     <div class="mt-2 xl:mt-4 mb-4 flex justify-center">
-      <p class="font-bold text-base text-[#293649] dark:text-[#E0E0E0]">
+      <p class="font-bold text-base text-[#293649]">
         Find career opportunities in Ethiopia
       </p>
     </div>
@@ -16,7 +16,7 @@
       >
         <div class="relative">
           <div
-            class="w-full flex items-center justify-between py-1 border dark:border-none border-gray-300 hover:border-[#10B981] shadow-sm md:w-[80%] lg:w-[90%] mx-auto lg:pl-4 text-sm placeholder:font-semibold mb-0 lg:mb-0 dark:text-[#E0E0E0] bg-white dark:bg-[#293649] mr-0 xsm:pl-0 sm:pl-4 xl:pl-auto h-10 xl:h-12 rounded-bl-lg"
+            class="w-full flex items-center justify-between py-1 border border-gray-300 hover:border-[#10B981] shadow-sm md:w-[80%] lg:w-[90%] mx-auto lg:pl-4 text-sm placeholder:font-semibold mb-0 lg:mb-0 bg-white mr-0 xsm:pl-0 sm:pl-4 xl:pl-auto h-10 xl:h-12 rounded-bl-lg"
             style="
               border-top-left-radius: 0.5rem;
               border-bottom-left-radius: 0;
@@ -43,14 +43,14 @@
             />
           </div>
           <ul
-            class="z-20 w-full absolute rounded-b-md bg-white dark:bg-[#293649] border-b-1 border-[#10B981] scrollbar scrollbar-thin scrollbar-track-rounded-full scrollbar-track-[#10B981] shadow-lg max-h-56 text-base overflow-auto"
+            class="z-20 w-full absolute rounded-b-md bg-white border-b-1 border-[#10B981] scrollbar scrollbar-thin scrollbar-track-rounded-full scrollbar-track-[#10B981] shadow-lg max-h-56 text-base overflow-auto"
             :style="{ display: filteredJobs.length > 0 ? 'block' : 'none' }"
           >
             <li
               v-for="job in filteredJobs"
               :key="job.id"
               @click="selectJob(job)"
-              class="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 text-[#293649] dark:text-[#F3F4F6]"
+              class="px-4 py-2 cursor-pointer hover:bg-gray-100 text-[#293649]"
             >
               {{ job.title }} - {{ job.company }} ({{ job.city }})
             </li>
@@ -78,8 +78,7 @@
           class="font-body text-[#10B981] text-xl xl:text-3xl font-extrabold"
           >{{ totalJobs }}</span
         >
-        <span
-          class="block text-[#293649] font-bold text-sm xl:text-lg dark:text-[#E0E0E0]"
+        <span class="block text-[#293649] font-bold text-sm xl:text-lg"
           >Jobs</span
         >
       </div>
@@ -88,9 +87,7 @@
           class="font-body text-[#10B981] text-xl xl:text-3xl font-extrabold"
           >{{ totalCompanies }}</span
         >
-        <span
-          class="block text-[#293649] font-bold text-sm xl:text-lg dark:text-[#E0E0E0]"
-        >
+        <span class="block text-[#293649] font-bold text-sm xl:text-lg">
           Companies
         </span>
       </div>
@@ -99,8 +96,7 @@
           class="font-body text-[#10B981] text-xl xl:text-3xl font-extrabold"
           >{{ totalSectors }}</span
         >
-        <span
-          class="block text-[#293649] font-bold text-sm xl:text-lg dark:text-[#E0E0E0]"
+        <span class="block text-[#293649] font-bold text-sm xl:text-lg"
           >Sectors</span
         >
       </div>
