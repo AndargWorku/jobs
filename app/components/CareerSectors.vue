@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 min-h-screen p-8">
+  <div class="bg-gray-100 min-h-screen p-8 dark:bg-gray-900 dark:text-white">
     <div class="max-w-7xl mx-auto">
       <h1 class="text-4xl font-bold text-gray-800 text-center mb-4">
         Career sectors
@@ -112,11 +112,3 @@ const careerSectors = ref([
   },
 ]);
 </script>
-
-<style scoped>
-/* No specific styling needed beyond Tailwind for img tags */
-.sector-image {
-  /* You can add custom styles here if needed,
-     but w-10 h-10 object-contain should be sufficient for sizing */
-}
-</style>

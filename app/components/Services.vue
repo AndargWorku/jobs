@@ -1,5 +1,7 @@
 <template>
-  <div class="font-sans antialiased text-gray-800 bg-gray-50 min-h-screen">
+  <div
+    class="font-sans antialiased text-gray-800 bg-gray-50 dark:bg-gray-900 dark:text-white min-h-screen"
+  >
     <main class="container mx-auto px-6 md:px-8 lg:px-12 py-12">
       <section class="text-center mb-12">
         <h1 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">

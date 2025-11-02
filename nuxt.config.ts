@@ -37,6 +37,7 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config.ts', 
     viewer: true,                    
   },
+  
   //  pinia: {
   //   storesDirs: ['./store/**'],
   // },

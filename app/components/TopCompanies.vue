@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-green-50 py-16">
+  <section class="bg-green-50 py-16 dark:bg-gray-900 dark:text-white">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">
         HaHuJobs top posting companies

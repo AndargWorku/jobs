@@ -1,5 +1,7 @@
 <template>
-  <section class="bg-[#F8FCFC] py-16 px-6 md:px-12">
+  <section
+    class="bg-[#F8FCFC] py-16 px-6 md:px-12 dark:bg-gray-900 dark:text-white"
+  >
     <div
       class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start rounded-3xl bg-white p-8 md:p-12 shadow-sm"
     >

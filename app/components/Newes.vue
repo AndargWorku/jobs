@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-gray-100 min-h-screen py-10 px-20 cursor-pointer">
+  <div
+    class="bg-gray-100 min-h-screen py-10 px-20 cursor-pointer dark:bg-gray-900 dark:text-white"
+  >
     <div class="container mx-auto px-4">
       <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
         News & Events

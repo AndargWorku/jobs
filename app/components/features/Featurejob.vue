@@ -1,5 +1,7 @@
 <template>
-  <div class="relative mt-6 bg-[#F5F7F9] py-10">
+  <div
+    class="relative mt-6 bg-[#F5F7F9] py-10 dark:bg-gray-900 dark:text-white"
+  >
     <p class="text-2xl font-bold text-center justify-center">Featured Jobs</p>
     <p class="text-center text-sm justify-center mt-2">
       Explore our handpicked selection of top job openings. Find your dream
